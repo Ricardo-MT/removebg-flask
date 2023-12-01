@@ -38,7 +38,7 @@ def remove_background():
     except Exception as e:
         return jsonify({"message": "Failed to save output image"}), 500
 
-    response = Response(content=output_file.getvalue())
+    response = Response(response=output_file.getvalue())
     response.headers['Content-Disposition'] = 'attachment; filename=output.png'
     response.headers['Content-Type'] = 'image/png'
 
