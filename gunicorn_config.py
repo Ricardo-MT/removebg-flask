@@ -4,3 +4,4 @@ threads = 2
 worker_class = "gevent"
 timeout = 400
 keepalive = 400
+max_requests = 3
