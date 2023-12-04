@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask import Flask, Response, jsonify, request
 from rembg import remove
 from PIL import Image
+from base64 import b64encode
 
 app = Flask(__name__)
 
@@ -37,8 +38,6 @@ def remove_background():
     except Exception as e:
         return jsonify({"message": "Failed to save output image"}), 500
 
-    response = Response(response=output_file.getvalue())
-    response.headers['Content-Disposition'] = 'attachment; filename=output.png'
-    response.headers['Content-Type'] = 'image/png'
+    response = Response(response=b64encode(output_file.getvalue()))
 
     return response
